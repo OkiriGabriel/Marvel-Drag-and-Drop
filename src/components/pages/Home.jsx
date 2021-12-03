@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { DragDropContext } from 'react-beautiful-dnd';
-
 import { HEROES, COMICS } from '../data/data';
 import {shuffle, getTimeLeft, GAME_STATE, move} from '../helpers/utils'
-
 
 import Modal from '../layouts/partials/Modal';
 import Header from '../layouts/partials/Header';
@@ -85,7 +84,9 @@ class App extends React.Component {
     return (
       <>
         <Header gameState={gameState} timeLeft={timeLeft} endGame={this.endGame} />
+
         {this.state.gameState !== GAME_STATE.PLAYING && (
+
           <Modal
             startGame={this.startGame}
             resetGame={this.resetGame}
@@ -93,27 +94,39 @@ class App extends React.Component {
             gameState={gameState}
             groups={groups}
           />
+          
         )}
+
         {(this.state.gameState === GAME_STATE.PLAYING ||
           this.state.gameState === GAME_STATE.DONE) && (
+
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className="container">
+
               <div className="columns">
+
                 <Dropzone
                   id={COMICS.MARVEL}
                   heroes={this.state[COMICS.MARVEL]}
                   isDropDisabled={isDropDisabled}
                 />
+
                 <Dropzone id="bench" heroes={bench} isDropDisabled={isDropDisabled} />
+
                 <Dropzone
                   id={COMICS.DC}
                   heroes={this.state[COMICS.DC]}
                   isDropDisabled={isDropDisabled}
                 />
+
               </div>
+
             </div>
+
           </DragDropContext>
+
         )}
+
         <Footer />
       </>
     );
