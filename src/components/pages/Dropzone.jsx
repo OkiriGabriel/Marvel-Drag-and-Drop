@@ -16,7 +16,7 @@ const Dropzone = ({ isDropDisabled, heroes, id }) => (
             
           return (
               
-            <div className="menu hero-list" {...provided.droppableProps} ref={provided.innerRef}>x\
+            <div className="menu hero-list" {...provided.droppableProps} ref={provided.innerRef}>
 
               {heroes.map(({ name }, index) => (
 
